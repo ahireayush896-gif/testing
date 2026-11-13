@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+# CONFLICT FROM PR BRANCH ON LINE 1
+=======
 # CONFLICT FROM MAIN ON MODELS
+>>>>>>> 5ab885e964d7f7c852ab36a0112f4f439da51d04
 from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
@@ -27,3 +31,4 @@ class TodoItem(TodoBase):
 
     class Config:
         orm_mode = True
+# manual follow-up test comment
