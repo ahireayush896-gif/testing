@@ -1,3 +1,4 @@
+# CONFLICT FROM PR BRANCH ON LINE 1
 from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
