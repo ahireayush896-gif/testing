@@ -1,5 +1,7 @@
 // frontend/src/App.tsx
 import React from 'react';
+import FinanceAdvisor from './frontend/src/components/FinanceAdvisor';
+
 
 export interface AppProps {
   className?: string;
