@@ -33,5 +33,9 @@ class TodoItem(TodoBase):
         orm_mode = True
 # manual follow-up test comment
 
+<<<<<<< HEAD
+#edit edit edit
+=======
 #this is to raise a conflict
 
+>>>>>>> 81ea5a073a3ceb67419d1fb7beabbef126a33553

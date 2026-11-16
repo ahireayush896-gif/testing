@@ -54,7 +54,7 @@ def create_todo(todo: TodoCreate):
     }
     fake_todos_db.append(new_item)
     return new_item
-
+#I am editting this code so that i can again merge it into the PR, but the option is not appearing
 @app.get("/api/todos/{todo_id}", response_model=TodoItem, tags=["Todos"])
 def get_todo(todo_id: int):
     for todo in fake_todos_db:
@@ -79,3 +79,6 @@ def delete_todo(todo_id: int):
             fake_todos_db.pop(index)
             return None
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Todo item with id {todo_id} not found")
+
+
+#I am editting this code so that i can again merge it into the PR, but the option is not appearing
