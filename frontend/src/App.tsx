@@ -1,5 +1,7 @@
 // frontend/src/App.tsx
 import React from 'react';
+import AttendanceTracker from './frontend/src/components/AttendanceTracker';
+
 
 export interface AppProps {
   className?: string;
