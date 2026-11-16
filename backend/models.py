@@ -39,4 +39,9 @@ class TodoItem(TodoBase):
 #this is to raise a conflict
 
 >>>>>>> 81ea5a073a3ceb67419d1fb7beabbef126a33553
+<<<<<<< HEAD
+#i am edditing this file
+#jfhafhaspfhafnsfjbajabfjabfjbajsfbjhjahbfjhabf
+=======
 #will this raise a conflict
+>>>>>>> 9da6392c43d4c7880b4b73d7b8f27c69298eccff
