@@ -1,11 +1,45 @@
-⚠️ **AUTO Multi-Engine Dispatcher: All candidate models exhausted**
+from fastapi.testclient import TestClient
+from backend.main import app
 
-The AI Dispatcher attempted to route your task across specialized engines, but each provider encountered quota or balance limits:
+client = TestClient(app)
 
-- **gpt-4o**: Active rate-limit cooldown (14s remaining)
-- **claude-3-5-sonnet-20241022**: Active rate-limit cooldown (14s remaining)
-- **deepseek-reasoner**: Active rate-limit cooldown (15s remaining)
-- **gemini-pro-latest**: Active rate-limit cooldown (15s remaining)
-- **gemini-3.5-flash**: Active rate-limit cooldown (18s remaining)
+def test_read_root():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "message" in response.json()
 
-👉 **Resolution**: Please top up credits for any of the above providers in your `.env` or wait for rate limit cooldowns to refresh.
+def test_todos_lifecycle():
+    # Create todo
+    response = client.post("/api/todos", json={
+        "title": "Test Bee Detection",
+        "description": "Test description",
+        "completed": False,
+        "priority": "high",
+        "category": "Testing"
+    })
+    assert response.status_code == 201
+    data = response.json()
+    todo_id = data["id"]
+    assert data["title"] == "Test Bee Detection"
+
+    # Get todos
+    response = client.get("/api/todos")
+    assert response.status_code == 200
+    todos = response.json()
+    assert len(todos) >= 1
+
+    # Get single todo
+    response = client.get(f"/api/todos/{todo_id}")
+    assert response.status_code == 200
+    assert response.json()["id"] == todo_id
+
+    # Update todo
+    response = client.put(f"/api/todos/{todo_id}", json={
+        "completed": True
+    })
+    assert response.status_code == 200
+    assert response.json()["completed"] is True
+
+    # Delete todo
+    response = client.delete(f"/api/todos/{todo_id}")
+    assert response.status_code == 204
