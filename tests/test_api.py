@@ -27,6 +27,7 @@ def test_todos_lifecycle():
     assert response.status_code == 200
     todos = response.json()
     assert len(todos) >= 1
+    assert isinstance(todos, list)
 
     # Get single todo
     response = client.get(f"/api/todos/{todo_id}")
