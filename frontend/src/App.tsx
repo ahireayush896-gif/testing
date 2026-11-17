@@ -1,5 +1,7 @@
 // frontend/src/App.tsx
 import React from 'react';
+import BeeDetector from './frontend/src/components/BeeDetector';
+
 
 export interface AppProps {
   className?: string;
