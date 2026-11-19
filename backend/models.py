@@ -1,11 +1,27 @@
-<<<<<<< HEAD
-# CONFLICT FROM PR BRANCH ON LINE 1
-=======
-# CONFLICT FROM MAIN ON MODELS
->>>>>>> 5ab885e964d7f7c852ab36a0112f4f439da51d04
 from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
+
+class UserProfileBase(BaseModel):
+    name: str = Field(..., min_length=1, max_length=100, description="Full name of the user")
+    email: Optional[str] = Field(None, description="Email address of the user")
+    bio: Optional[str] = Field(None, max_length=500, description="Short user biography")
+
+class UserProfileCreate(UserProfileBase):
+    pass
+
+class UserProfileUpdate(BaseModel):
+    name: Optional[str] = Field(None, min_length=1, max_length=100)
+    email: Optional[str] = Field(None)
+    bio: Optional[str] = Field(None, max_length=500)
+
+class UserProfile(UserProfileBase):
+    id: int
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
 
 class TodoBase(BaseModel):
     title: str = Field(..., min_length=1, max_length=200, description="Title of the todo item")
@@ -30,13 +46,4 @@ class TodoItem(TodoBase):
     updated_at: Optional[datetime] = None
 
     class Config:
-        orm_mode = True
-# manual follow-up test comment
-
-<<<<<<< HEAD
-#edit edit edit
-=======
-#this is to raise a conflict
-
->>>>>>> 81ea5a073a3ceb67419d1fb7beabbef126a33553
-#will this raise a conflict
+        from_attributes = True
